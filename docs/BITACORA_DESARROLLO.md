@@ -255,3 +255,8 @@ anteriores no se modifican.
 ### 2026-11-10 · Guía de la prueba de laboratorio en docs/
 - Qué: el usuario copió `GUIA_PRUEBA_LABORATORIO.md` en `docs/`; actualizados sus comandos y rutas a la nueva estructura (`py servidor/interfaz.py`, `py servidor/servidor_opcua.py --config config.yaml`, `modelos/modelo_celula.xml`, `logs/servidor.log`), con el comando completo de la comprobación de seguridad estricta. Se sustituye la nota sobre la reorganización pendiente por la indicación de lanzar todo desde la raíz.
 - Pruebas: solo documentación; código sin cambios.
+
+### 2026-11-10 · GUIA_DESPLIEGUE.md: apartado 9 con la batería actual
+- Qué: el apartado 9 indica veinticuatro pruebas (seis de interoperabilidad) en lugar de dieciocho, lanzadas con `py pruebas/<prueba>.py`; la lista de comandos añade las seis `test_interop_*` y las que no abren el puerto 102 incluyen `test_interop_doc` y `test_interop_navegacion`.
+- Revisión: no queda en la guía ninguna otra referencia al número antiguo de pruebas.
+- Pruebas: solo documentación; código sin cambios.

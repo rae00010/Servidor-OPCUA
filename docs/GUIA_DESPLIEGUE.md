@@ -303,11 +303,12 @@ responde. Si las escrituras en los sensores se rechazan con
 
 ## 9. Pruebas sin hardware
 
-Para validar el despliegue sin conectar el PLC, hay un PLC S7 emulado y dieciocho
-pruebas automáticas. Todo se ejecuta desde la raíz del proyecto. Todas salvo
-`test_faseA_contrato.py`, `test_faseB_planta.py` y `test_faseC_pagina.py` abren
-el puerto 102, así que deben ejecutarse de una en una y con TIA Portal o PLCSIM
-cerrados.
+Para validar el despliegue sin conectar el PLC, hay un PLC S7 emulado y
+veinticuatro pruebas automáticas, seis de ellas de interoperabilidad. Todo se
+ejecuta desde la raíz del proyecto con `py pruebas/<prueba>.py`. Todas salvo
+`test_faseA_contrato.py`, `test_faseB_planta.py`, `test_faseC_pagina.py`,
+`test_interop_doc.py` y `test_interop_navegacion.py` abren el puerto 102, así
+que deben ejecutarse de una en una y con TIA Portal o PLCSIM cerrados.
 
 ```
 py pruebas/test_v5_plc_emulado.py      (prueba funcional)
@@ -328,6 +329,12 @@ py pruebas/test_faseC_parada.py        (parada ordenada sin señales)
 py pruebas/test_faseC_api.py           (API de la interfaz, rutas seguras y sesión)
 py pruebas/test_faseC_pagina.py        (página web sin recursos externos, sin PLC)
 py pruebas/test_faseC_cierre.py        (flujo completo desde la interfaz)
+py pruebas/test_interop_perfil.py      (ServerProfileArray vacío salvo --perfil)
+py pruebas/test_interop_confianza.py   (lista de confianza: rechazo, aceptación y motivos)
+py pruebas/test_interop_politicas.py   (políticas y modos de firmar y estricto)
+py pruebas/test_interop_doc.py         (coherencia de INTEROPERABILIDAD.md, sin PLC)
+py pruebas/test_interop_nodo_inexistente.py  (escritura en un NodeId inexistente)
+py pruebas/test_interop_navegacion.py  (evidencia de navegación frente al modelo, sin PLC)
 ```
 
 Las pruebas trabajan en la carpeta `tmp/` de la raíz (la fija `pruebas/_rutas.py`):
