@@ -1,0 +1,1399 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<UANodeSet xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:s1="urn:miservidor:ledRojo/Types.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ua="http://unifiedautomation.com/Configuration/NodeSet.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+    <NamespaceUris>
+        <Uri>urn:miservidor:ledRojo</Uri>
+    </NamespaceUris>
+    <Models>
+        <Model Version="1.1.0" ModelUri="urn:miservidor:ledRojo" PublicationDate="2026-10-28T10:10:20Z">
+            <RequiredModel Version="1.05.05" ModelUri="http://opcfoundation.org/UA/" PublicationDate="2025-06-30T00:00:00Z"/>
+        </Model>
+    </Models>
+    <Aliases>
+        <Alias Alias="Boolean">i=1</Alias>
+        <Alias Alias="Int32">i=6</Alias>
+        <Alias Alias="String">i=12</Alias>
+        <Alias Alias="DateTime">i=13</Alias>
+        <Alias Alias="Organizes">i=35</Alias>
+        <Alias Alias="HasModellingRule">i=37</Alias>
+        <Alias Alias="HasTypeDefinition">i=40</Alias>
+        <Alias Alias="HasSubtype">i=45</Alias>
+        <Alias Alias="HasProperty">i=46</Alias>
+        <Alias Alias="HasComponent">i=47</Alias>
+        <Alias Alias="IdType">i=256</Alias>
+        <Alias Alias="NumericRange">i=291</Alias>
+        <Alias Alias="LocalizedText">i=21</Alias>
+    </Aliases>
+    <Extensions>
+        <Extension>
+            <ua:ModelInfo Version="1.8.1" Hash="4W+ClIXTYgKfRepXcqg1Xg==" Tool="UaModeler"/>
+        </Extension>
+    </Extensions>
+    <!-- Tipo de Variable Para la Dirección en Byte y Bit -->
+    <!-- Tipo enumerado del area de memoria (direccionamiento directo IEC 61131-3) -->
+    <UADataType NodeId="ns=1;i=3001" BrowseName="1:AreaPLC">
+        <DisplayName>AreaPLC</DisplayName>
+        <Description>Area de memoria del controlador</Description>
+        <References>
+            <Reference ReferenceType="HasProperty">ns=1;i=6100</Reference>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=29</Reference>
+        </References>
+        <Definition Name="1:AreaPLC">
+            <Field Name="I" Value="0">
+                <Description>Entradas (%I)</Description>
+            </Field>
+            <Field Name="Q" Value="1">
+                <Description>Salidas (%Q)</Description>
+            </Field>
+            <Field Name="M" Value="2">
+                <Description>Marcas (%M)</Description>
+            </Field>
+            <Field Name="DB" Value="3">
+                <Description>Bloque de datos</Description>
+            </Field>
+        </Definition>
+    </UADataType>
+    <UAVariable DataType="LocalizedText" ValueRank="1" ArrayDimensions="4" BrowseName="EnumStrings" ParentNodeId="ns=1;i=3001" NodeId="ns=1;i=6100">
+        <DisplayName>EnumStrings</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=3001</Reference>
+        </References>
+        <Value>
+            <uax:ListOfLocalizedText>
+                <uax:LocalizedText>
+                    <uax:Locale></uax:Locale>
+                    <uax:Text>I</uax:Text>
+                </uax:LocalizedText>
+                <uax:LocalizedText>
+                    <uax:Locale></uax:Locale>
+                    <uax:Text>Q</uax:Text>
+                </uax:LocalizedText>
+                <uax:LocalizedText>
+                    <uax:Locale></uax:Locale>
+                    <uax:Text>M</uax:Text>
+                </uax:LocalizedText>
+                <uax:LocalizedText>
+                    <uax:Locale></uax:Locale>
+                    <uax:Text>DB</uax:Text>
+                </uax:LocalizedText>
+            </uax:ListOfLocalizedText>
+        </Value>
+    </UAVariable>
+    <UAVariableType BrowseName="1:Address" ValueRank="-1" NodeId="ns=1;i=2003">
+        <DisplayName>Address</DisplayName>
+        <Description>Physical Address</Description>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasSubtype">i=63</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6003</Reference>
+            <!-- Referencia a la variable de Byte -->
+            <Reference ReferenceType="HasProperty">ns=1;i=6002</Reference>
+            <!-- Referencia a la variable de Bit -->
+            <Reference ReferenceType="HasProperty">ns=1;i=6101</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6102</Reference>
+        </References>
+    </UAVariableType>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=2003" NodeId="ns=1;i=6101">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=2003</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="1" BrowseName="1:db" ParentNodeId="ns=1;i=2003" NodeId="ns=1;i=6102">
+        <DisplayName>db</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=80</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=2003</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=2003" NodeId="ns=1;i=6003">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=2003</Reference>
+            <!-- Necesidad de referenciar a que padre pertenece la Variable -->
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=2003" NodeId="ns=1;i=6002">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=2003</Reference>
+        </References>
+    </UAVariable>
+    <!-- Tipo de Objeto para Cilindro Doble Efecto -->
+    <UAObjectType BrowseName="1:TCilindroDobleEfecto" NodeId="ns=1;i=1008">
+        <DisplayName>TCilindroDobleEfecto</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasSubtype">i=58</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=5002</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=5001</Reference>
+        </References>
+    </UAObjectType>
+    <UAObject BrowseName="1:Control" ParentNodeId="ns=1;i=1008" NodeId="ns=1;i=5002">
+        <DisplayName>Control</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1008</Reference>
+            <!-- Necesidad de referenciar a que padre pertenece la Variable -->
+            <Reference ReferenceType="HasComponent">ns=1;i=6031</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6028</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:ContraerSalida" ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6031">
+        <DisplayName>ContraerSalida</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5002</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6033</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6032</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6200</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6031" NodeId="ns=1;i=6200">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6031</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6031" NodeId="ns=1;i=6033">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6031</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6031" NodeId="ns=1;i=6032">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6031</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:ExpandirSalida" ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6028">
+        <DisplayName>ExpandirSalida</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5002</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6030</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6029</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6201</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6028" NodeId="ns=1;i=6201">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6028</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6028" NodeId="ns=1;i=6030">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6028</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6028" NodeId="ns=1;i=6029">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6028</Reference>
+        </References>
+    </UAVariable>
+    <UAObject BrowseName="1:Estado" ParentNodeId="ns=1;i=1008" NodeId="ns=1;i=5001">
+        <DisplayName>Estado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1008</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6022</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6025</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Expandido" ParentNodeId="ns=1;i=5001" NodeId="ns=1;i=6022">
+        <DisplayName>Expandido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5001</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6023</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6024</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6202</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6022" NodeId="ns=1;i=6202">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6022</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6022" NodeId="ns=1;i=6023">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6022</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6022" NodeId="ns=1;i=6024">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6022</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Retraido" ParentNodeId="ns=1;i=5001" NodeId="ns=1;i=6025">
+        <DisplayName>Retraido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5001</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6026</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6027</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6203</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6025" NodeId="ns=1;i=6203">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6025</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6025" NodeId="ns=1;i=6026">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6025</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6025" NodeId="ns=1;i=6027">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6025</Reference>
+        </References>
+    </UAVariable>
+    <!-- Tipo de Objeto para Cilindro de Simple Efecto -->
+    <UAObjectType BrowseName="1:TCilindroSimpleEfecto" NodeId="ns=1;i=1009">
+        <DisplayName>TCilindroSimpleEfecto</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasSubtype">i=58</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=5003</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=5005</Reference>
+        </References>
+    </UAObjectType>
+    <UAObject BrowseName="1:Control" ParentNodeId="ns=1;i=1009" NodeId="ns=1;i=5003">
+        <DisplayName>Control</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1009</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6050</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:ExpandirSalida" ParentNodeId="ns=1;i=5003" NodeId="ns=1;i=6050">
+        <DisplayName>ExpandirSalida</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5003</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6051</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6052</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6204</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6050" NodeId="ns=1;i=6204">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6050</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6050" NodeId="ns=1;i=6051">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6050</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6050" NodeId="ns=1;i=6052">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6050</Reference>
+        </References>
+    </UAVariable>
+    <UAObject BrowseName="1:Estado" ParentNodeId="ns=1;i=1009" NodeId="ns=1;i=5005">
+        <DisplayName>Estado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1009</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Expandido" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6053">
+        <DisplayName>Expandido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5005</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6054</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6055</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6205</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6053" NodeId="ns=1;i=6205">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6053</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6053" NodeId="ns=1;i=6054">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6053</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6053" NodeId="ns=1;i=6055">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6053</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Retraido" ParentNodeId="ns=1;i=5005" NodeId="ns=1;i=6056">
+        <DisplayName>Retraido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5005</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6057</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6058</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6206</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6056" NodeId="ns=1;i=6206">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6056</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6056" NodeId="ns=1;i=6057">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6056</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6056" NodeId="ns=1;i=6058">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6056</Reference>
+        </References>
+    </UAVariable>
+    <!-- Tipo de Objeto para el Estado de un Cilindro -->
+    <UAObjectType BrowseName="1:TCilindroEstado" NodeId="ns=1;i=1005">
+        <DisplayName>TCilindroEstado</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasSubtype">i=58</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6019</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6016</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Expandido" ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=6019">
+        <DisplayName>Expandido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1005</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6021</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6020</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6207</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6019" NodeId="ns=1;i=6207">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6019</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6019" NodeId="ns=1;i=6021">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6019</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6019" NodeId="ns=1;i=6020">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6019</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Retraido" ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=6016">
+        <DisplayName>Retraido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1005</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6018</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6017</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6208</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6016" NodeId="ns=1;i=6208">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6016</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6016" NodeId="ns=1;i=6018">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6016</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6016" NodeId="ns=1;i=6017">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6016</Reference>
+        </References>
+    </UAVariable>
+    <!-- Tipo de Objeto de un Led -->
+    <UAObjectType BrowseName="1:TLed" NodeId="ns=1;i=1003">
+        <DisplayName>TLed</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasSubtype">i=58</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6001</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="Boolean" AccessLevel="3" UserAccessLevel="3" BrowseName="1:Value" ParentNodeId="ns=1;i=1003" NodeId="ns=1;i=6001">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1003</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6004</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6005</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6209</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6001" NodeId="ns=1;i=6209">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6001</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6001" NodeId="ns=1;i=6004">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6001</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6001" NodeId="ns=1;i=6005">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6001</Reference>
+        </References>
+    </UAVariable>
+    <!-- Tipo de Objeto de un Pulsador -->
+    <UAObjectType BrowseName="1:TPulsador" NodeId="ns=1;i=1014">
+        <DisplayName>TPulsador</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasSubtype">i=58</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=5006</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=5007</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=7001</Reference>
+        </References>
+    </UAObjectType>
+    <!-- Fase B: metodo declarado en el modelo; el servidor solo enlaza su implementacion -->
+    <UAMethod BrowseName="1:ControlarPulsador" ParentNodeId="ns=1;i=1014" NodeId="ns=1;i=7001">
+        <DisplayName>ControlarPulsador</DisplayName>
+        <Description>Pulsa o suelta el pulsador desde OPC UA</Description>
+        <References>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1014</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=7002</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=7003</Reference>
+        </References>
+    </UAMethod>
+    <UAVariable DataType="i=296" ValueRank="1" ArrayDimensions="1" BrowseName="InputArguments" ParentNodeId="ns=1;i=7001" NodeId="ns=1;i=7002">
+        <DisplayName>InputArguments</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=7001</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId><uax:Identifier>i=297</uax:Identifier></uax:TypeId>
+                    <uax:Body>
+                        <uax:Argument>
+                            <uax:Name>accion</uax:Name>
+                            <uax:DataType><uax:Identifier>i=12</uax:Identifier></uax:DataType>
+                            <uax:ValueRank>-1</uax:ValueRank>
+                            <uax:ArrayDimensions/>
+                            <uax:Description><uax:Locale/><uax:Text>pulsar | soltar</uax:Text></uax:Description>
+                        </uax:Argument>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="i=296" ValueRank="1" ArrayDimensions="1" BrowseName="OutputArguments" ParentNodeId="ns=1;i=7001" NodeId="ns=1;i=7003">
+        <DisplayName>OutputArguments</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=7001</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId><uax:Identifier>i=297</uax:Identifier></uax:TypeId>
+                    <uax:Body>
+                        <uax:Argument>
+                            <uax:Name>resultado</uax:Name>
+                            <uax:DataType><uax:Identifier>i=12</uax:Identifier></uax:DataType>
+                            <uax:ValueRank>-1</uax:ValueRank>
+                            <uax:ArrayDimensions/>
+                            <uax:Description><uax:Locale/><uax:Text></uax:Text></uax:Description>
+                        </uax:Argument>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <!-- Pulsacion remota: escrita por el metodo ControlarPulsador -->
+    <UAObject BrowseName="1:Control" ParentNodeId="ns=1;i=1014" NodeId="ns=1;i=5007">
+        <DisplayName>Control</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1014</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6060</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" BrowseName="1:PulsadoRemoto" ParentNodeId="ns=1;i=5007" NodeId="ns=1;i=6060" AccessLevel="3" UserAccessLevel="3">
+        <DisplayName>PulsadoRemoto</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=5007</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6061</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6062</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6210</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6060" NodeId="ns=1;i=6210">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6060</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="1" BrowseName="1:byte" ParentNodeId="ns=1;i=6060" NodeId="ns=1;i=6061">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6060</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="1" BrowseName="1:bit" ParentNodeId="ns=1;i=6060" NodeId="ns=1;i=6062">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6060</Reference>
+        </References>
+    </UAVariable>
+    <UAObject BrowseName="1:Estado" ParentNodeId="ns=1;i=1014" NodeId="ns=1;i=5006">
+        <DisplayName>Estado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1004</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1014</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6043</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Pulsado" ParentNodeId="ns=1;i=5006" NodeId="ns=1;i=6043">
+        <DisplayName>Pulsado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=5006</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6044</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6045</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6211</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6043" NodeId="ns=1;i=6211">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6043</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6043" NodeId="ns=1;i=6044">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6043</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6043" NodeId="ns=1;i=6045">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6043</Reference>
+        </References>
+    </UAVariable>
+    <!-- Tipo de Objeto para el Estado de un Pulsador -->
+    <UAObjectType BrowseName="1:TPulsadorEstado" NodeId="ns=1;i=1004">
+        <DisplayName>TPulsadorEstado</DisplayName>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasSubtype">i=58</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;i=6006</Reference>
+        </References>
+    </UAObjectType>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Pulsado" ParentNodeId="ns=1;i=1004" NodeId="ns=1;i=6006">
+        <DisplayName>Pulsado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;i=1004</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6008</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6007</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6212</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;i=6006" NodeId="ns=1;i=6212">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6006</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;i=6006" NodeId="ns=1;i=6008">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6006</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;i=6006" NodeId="ns=1;i=6007">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasModellingRule">i=78</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=6006</Reference>
+        </References>
+    </UAVariable>
+    <!-- Creación de un UAObject de tipo Cilindro Doble Efecto -->
+    <UAObject BrowseName="1:CilindroA" NodeId="ns=1;s=CilindroA">
+        <DisplayName>CilindroA</DisplayName>
+        <Description>Cilindro de Doble Efecto</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1008</Reference>
+            <Reference IsForward="false" ReferenceType="Organizes">i=85</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroA.Control</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroA.Estado</Reference>
+        </References>
+    </UAObject>
+    <UAObject BrowseName="1:Control" ParentNodeId="ns=1;s=CilindroA" NodeId="ns=1;s=CilindroA.Control">
+        <DisplayName>Control</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroA</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroA.Control.ContraerSalida</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroA.Control.ExpandirSalida</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:ContraerSalida" ParentNodeId="ns=1;s=CilindroA.Control" NodeId="ns=1;s=CilindroA.Control.ContraerSalida">
+        <DisplayName>ContraerSalida</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroA.Control</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ContraerSalida.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ContraerSalida.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ContraerSalida.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=CilindroA.Control.ContraerSalida" NodeId="ns=1;s=CilindroA.Control.ContraerSalida.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=CilindroA.Control.ContraerSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>1</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=CilindroA.Control.ContraerSalida" NodeId="ns=1;s=CilindroA.Control.ContraerSalida.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ContraerSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>1</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=CilindroA.Control.ContraerSalida" NodeId="ns=1;s=CilindroA.Control.ContraerSalida.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ContraerSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:ExpandirSalida" ParentNodeId="ns=1;s=CilindroA.Control" NodeId="ns=1;s=CilindroA.Control.ExpandirSalida">
+        <DisplayName>ExpandirSalida</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroA.Control</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ExpandirSalida.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ExpandirSalida.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ExpandirSalida.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=CilindroA.Control.ExpandirSalida" NodeId="ns=1;s=CilindroA.Control.ExpandirSalida.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=CilindroA.Control.ExpandirSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>1</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=CilindroA.Control.ExpandirSalida" NodeId="ns=1;s=CilindroA.Control.ExpandirSalida.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ExpandirSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=CilindroA.Control.ExpandirSalida" NodeId="ns=1;s=CilindroA.Control.ExpandirSalida.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Control.ExpandirSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAObject BrowseName="1:Estado" ParentNodeId="ns=1;s=CilindroA" NodeId="ns=1;s=CilindroA.Estado">
+        <DisplayName>Estado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroA</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroA.Estado.Expandido</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroA.Estado.Retraido</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Expandido" ParentNodeId="ns=1;s=CilindroA.Estado" NodeId="ns=1;s=CilindroA.Estado.Expandido">
+        <DisplayName>Expandido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroA.Estado</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Expandido.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Expandido.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Expandido.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=CilindroA.Estado.Expandido" NodeId="ns=1;s=CilindroA.Estado.Expandido.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=CilindroA.Estado.Expandido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=CilindroA.Estado.Expandido" NodeId="ns=1;s=CilindroA.Estado.Expandido.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Expandido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>5</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=CilindroA.Estado.Expandido" NodeId="ns=1;s=CilindroA.Estado.Expandido.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Expandido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Retraido" ParentNodeId="ns=1;s=CilindroA.Estado" NodeId="ns=1;s=CilindroA.Estado.Retraido">
+        <DisplayName>Retraido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroA.Estado</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Retraido.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Retraido.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Retraido.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=CilindroA.Estado.Retraido" NodeId="ns=1;s=CilindroA.Estado.Retraido.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=CilindroA.Estado.Retraido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=CilindroA.Estado.Retraido" NodeId="ns=1;s=CilindroA.Estado.Retraido.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Retraido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>4</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=CilindroA.Estado.Retraido" NodeId="ns=1;s=CilindroA.Estado.Retraido.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroA.Estado.Retraido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <!-- Creacion de un UAObject de tipo CilindroSimpleEfecto -->
+    <UAObject BrowseName="1:CilindroB" NodeId="ns=1;s=CilindroB">
+        <DisplayName>CilindroB</DisplayName>
+        <Description>Cilindro de Simple Efecto</Description>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1009</Reference>
+            <Reference IsForward="false" ReferenceType="Organizes">i=85</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroB.Control</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroB.Estado</Reference>
+        </References>
+    </UAObject>
+    <UAObject BrowseName="1:Control" ParentNodeId="ns=1;s=CilindroB" NodeId="ns=1;s=CilindroB.Control">
+        <DisplayName>Control</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroB</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroB.Control.ExpandirSalida</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:ExpandirSalida" ParentNodeId="ns=1;s=CilindroB.Control" NodeId="ns=1;s=CilindroB.Control.ExpandirSalida">
+        <DisplayName>ExpandirSalida</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroB.Control</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Control.ExpandirSalida.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Control.ExpandirSalida.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Control.ExpandirSalida.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=CilindroB.Control.ExpandirSalida" NodeId="ns=1;s=CilindroB.Control.ExpandirSalida.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=CilindroB.Control.ExpandirSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>1</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=CilindroB.Control.ExpandirSalida" NodeId="ns=1;s=CilindroB.Control.ExpandirSalida.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroB.Control.ExpandirSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>2</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=CilindroB.Control.ExpandirSalida" NodeId="ns=1;s=CilindroB.Control.ExpandirSalida.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroB.Control.ExpandirSalida</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAObject BrowseName="1:Estado" ParentNodeId="ns=1;s=CilindroB" NodeId="ns=1;s=CilindroB.Estado">
+        <DisplayName>Estado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1005</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroB</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroB.Estado.Expandido</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=CilindroB.Estado.Retraido</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Expandido" ParentNodeId="ns=1;s=CilindroB.Estado" NodeId="ns=1;s=CilindroB.Estado.Expandido">
+        <DisplayName>Expandido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroB.Estado</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Expandido.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Expandido.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Expandido.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=CilindroB.Estado.Expandido" NodeId="ns=1;s=CilindroB.Estado.Expandido.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=CilindroB.Estado.Expandido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=CilindroB.Estado.Expandido" NodeId="ns=1;s=CilindroB.Estado.Expandido.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Expandido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>7</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=CilindroB.Estado.Expandido" NodeId="ns=1;s=CilindroB.Estado.Expandido.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Expandido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Retraido" ParentNodeId="ns=1;s=CilindroB.Estado" NodeId="ns=1;s=CilindroB.Estado.Retraido">
+        <DisplayName>Retraido</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=CilindroB.Estado</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Retraido.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Retraido.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Retraido.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=CilindroB.Estado.Retraido" NodeId="ns=1;s=CilindroB.Estado.Retraido.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=CilindroB.Estado.Retraido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=CilindroB.Estado.Retraido" NodeId="ns=1;s=CilindroB.Estado.Retraido.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Retraido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>6</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=CilindroB.Estado.Retraido" NodeId="ns=1;s=CilindroB.Estado.Retraido.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=CilindroB.Estado.Retraido</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <!-- Creacion de un UAObject de un tipo de objeto LED -->
+    <UAObject BrowseName="1:LedRojo" NodeId="ns=1;s=LedRojo">
+        <DisplayName>LedRojo</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1003</Reference>
+            <Reference IsForward="false" ReferenceType="Organizes">i=85</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=LedRojo.Value</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="3" UserAccessLevel="3" BrowseName="1:Value" ParentNodeId="ns=1;s=LedRojo" NodeId="ns=1;s=LedRojo.Value">
+        <DisplayName>Value</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=LedRojo</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=LedRojo.Value.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=LedRojo.Value.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=LedRojo.Value.area</Reference>
+        </References>
+        <!-- El LED es de solo escritura desde el MAS (el servidor nunca lo -->
+        <!-- escribe en su bucle de sync, solo lo lee). Sin valor inicial      -->
+        <!-- quedaba None/Null con planta real (la init a False solo corre en   -->
+        <!-- simulacion), y la alarma del agente de prediccion no surtia efecto.-->
+        <!-- Se fija un valor escalar Boolean=false para que exista y tenga     -->
+        <!-- tipo desde el arranque, con o sin PLC.                             -->
+        <Value>
+            <uax:Boolean>false</uax:Boolean>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=LedRojo.Value" NodeId="ns=1;s=LedRojo.Value.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=LedRojo.Value</Reference>
+        </References>
+        <Value>
+            <uax:Int32>1</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=LedRojo.Value" NodeId="ns=1;s=LedRojo.Value.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=LedRojo.Value</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=LedRojo.Value" NodeId="ns=1;s=LedRojo.Value.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=LedRojo.Value</Reference>
+        </References>
+        <Value>
+            <uax:Int32>3</uax:Int32>
+        </Value>
+    </UAVariable>
+    <!-- Creacion de un UAObject de tipo de objeto Pulsador -->
+    <UAObject BrowseName="1:PulsadorVerde" NodeId="ns=1;s=PulsadorVerde">
+        <DisplayName>PulsadorVerde</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1014</Reference>
+            <Reference IsForward="false" ReferenceType="Organizes">i=85</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=PulsadorVerde.Estado</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=PulsadorVerde.Control</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=PulsadorVerde.ControlarPulsador</Reference>
+        </References>
+    </UAObject>
+    <UAMethod BrowseName="1:ControlarPulsador" ParentNodeId="ns=1;s=PulsadorVerde" NodeId="ns=1;s=PulsadorVerde.ControlarPulsador" MethodDeclarationId="ns=1;i=7001">
+        <DisplayName>ControlarPulsador</DisplayName>
+        <Description>Pulsa o suelta el pulsador desde OPC UA</Description>
+        <References>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=PulsadorVerde</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.ControlarPulsador.InputArguments</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.ControlarPulsador.OutputArguments</Reference>
+        </References>
+    </UAMethod>
+    <UAVariable DataType="i=296" ValueRank="1" ArrayDimensions="1" BrowseName="InputArguments" ParentNodeId="ns=1;s=PulsadorVerde.ControlarPulsador" NodeId="ns=1;s=PulsadorVerde.ControlarPulsador.InputArguments">
+        <DisplayName>InputArguments</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=PulsadorVerde.ControlarPulsador</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId><uax:Identifier>i=297</uax:Identifier></uax:TypeId>
+                    <uax:Body>
+                        <uax:Argument>
+                            <uax:Name>accion</uax:Name>
+                            <uax:DataType><uax:Identifier>i=12</uax:Identifier></uax:DataType>
+                            <uax:ValueRank>-1</uax:ValueRank>
+                            <uax:ArrayDimensions/>
+                            <uax:Description><uax:Locale/><uax:Text>pulsar | soltar</uax:Text></uax:Description>
+                        </uax:Argument>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="i=296" ValueRank="1" ArrayDimensions="1" BrowseName="OutputArguments" ParentNodeId="ns=1;s=PulsadorVerde.ControlarPulsador" NodeId="ns=1;s=PulsadorVerde.ControlarPulsador.OutputArguments">
+        <DisplayName>OutputArguments</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=PulsadorVerde.ControlarPulsador</Reference>
+        </References>
+        <Value>
+            <uax:ListOfExtensionObject>
+                <uax:ExtensionObject>
+                    <uax:TypeId><uax:Identifier>i=297</uax:Identifier></uax:TypeId>
+                    <uax:Body>
+                        <uax:Argument>
+                            <uax:Name>resultado</uax:Name>
+                            <uax:DataType><uax:Identifier>i=12</uax:Identifier></uax:DataType>
+                            <uax:ValueRank>-1</uax:ValueRank>
+                            <uax:ArrayDimensions/>
+                            <uax:Description><uax:Locale/><uax:Text></uax:Text></uax:Description>
+                        </uax:Argument>
+                    </uax:Body>
+                </uax:ExtensionObject>
+            </uax:ListOfExtensionObject>
+        </Value>
+    </UAVariable>
+    <!-- Pulsacion remota: escrita por el metodo ControlarPulsador -->
+    <UAObject BrowseName="1:Control" ParentNodeId="ns=1;s=PulsadorVerde" NodeId="ns=1;s=PulsadorVerde.Control">
+        <DisplayName>Control</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=PulsadorVerde</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=PulsadorVerde.Control.PulsadoRemoto</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" BrowseName="1:PulsadoRemoto" ParentNodeId="ns=1;s=PulsadorVerde.Control" NodeId="ns=1;s=PulsadorVerde.Control.PulsadoRemoto" AccessLevel="3" UserAccessLevel="3">
+        <DisplayName>PulsadoRemoto</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;s=PulsadorVerde.Control</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Control.PulsadoRemoto.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Control.PulsadoRemoto.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Control.PulsadoRemoto.area</Reference>
+        </References>
+        <Value>
+            <uax:Boolean>false</uax:Boolean>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=PulsadorVerde.Control.PulsadoRemoto" NodeId="ns=1;s=PulsadorVerde.Control.PulsadoRemoto.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=PulsadorVerde.Control.PulsadoRemoto</Reference>
+        </References>
+        <Value>
+            <uax:Int32>2</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="1" BrowseName="1:byte" ParentNodeId="ns=1;s=PulsadorVerde.Control.PulsadoRemoto" NodeId="ns=1;s=PulsadorVerde.Control.PulsadoRemoto.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=PulsadorVerde.Control.PulsadoRemoto</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="1" BrowseName="1:bit" ParentNodeId="ns=1;s=PulsadorVerde.Control.PulsadoRemoto" NodeId="ns=1;s=PulsadorVerde.Control.PulsadoRemoto.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=PulsadorVerde.Control.PulsadoRemoto</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAObject BrowseName="1:Estado" ParentNodeId="ns=1;s=PulsadorVerde" NodeId="ns=1;s=PulsadorVerde.Estado">
+        <DisplayName>Estado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1004</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=PulsadorVerde</Reference>
+            <Reference ReferenceType="HasComponent">ns=1;s=PulsadorVerde.Estado.Pulsado</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" AccessLevel="1" UserAccessLevel="1" BrowseName="1:Pulsado" ParentNodeId="ns=1;s=PulsadorVerde.Estado" NodeId="ns=1;s=PulsadorVerde.Estado.Pulsado">
+        <DisplayName>Pulsado</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=2003</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">ns=1;s=PulsadorVerde.Estado</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Estado.Pulsado.bit</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Estado.Pulsado.byte</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Estado.Pulsado.area</Reference>
+        </References>
+    </UAVariable>
+    <UAVariable DataType="ns=1;i=3001" AccessLevel="1" BrowseName="1:area" ParentNodeId="ns=1;s=PulsadorVerde.Estado.Pulsado" NodeId="ns=1;s=PulsadorVerde.Estado.Pulsado.area">
+        <DisplayName>area</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;s=PulsadorVerde.Estado.Pulsado</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" BrowseName="1:bit" ParentNodeId="ns=1;s=PulsadorVerde.Estado.Pulsado" NodeId="ns=1;s=PulsadorVerde.Estado.Pulsado.bit">
+        <DisplayName>bit</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Estado.Pulsado</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Int32" AccessLevel="3" SymbolicName="Byte" BrowseName="1:byte" ParentNodeId="ns=1;s=PulsadorVerde.Estado.Pulsado" NodeId="ns=1;s=PulsadorVerde.Estado.Pulsado.byte">
+        <DisplayName>byte</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;s=PulsadorVerde.Estado.Pulsado</Reference>
+        </References>
+        <Value>
+            <uax:Int32>0</uax:Int32>
+        </Value>
+    </UAVariable>
+    <!-- PARTE NECESARIA PARA LA EXPORTACIÓN E IMPORTACIÓN DEL MODELO NO DEFINE NINGUN OBJETO NI TIPO DE OBJETO -->
+    <UAObject SymbolicName="urn_miservidor_ledRojo" BrowseName="1:urn:miservidor:ledRojo" NodeId="ns=1;i=5004">
+        <DisplayName>urn:miservidor:ledRojo</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=11616</Reference>
+            <Reference IsForward="false" ReferenceType="HasComponent">i=11715</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6009</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6010</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6011</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6012</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6013</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6014</Reference>
+            <Reference ReferenceType="HasProperty">ns=1;i=6015</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Boolean" BrowseName="IsNamespaceSubset" ParentNodeId="ns=1;i=5004" NodeId="ns=1;i=6009">
+        <DisplayName>IsNamespaceSubset</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=5004</Reference>
+        </References>
+        <Value>
+            <uax:Boolean>false</uax:Boolean>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="DateTime" BrowseName="NamespacePublicationDate" ParentNodeId="ns=1;i=5004" NodeId="ns=1;i=6010">
+        <DisplayName>NamespacePublicationDate</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=5004</Reference>
+        </References>
+        <Value>
+            <uax:DateTime>2026-05-28T16:23:43Z</uax:DateTime>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" BrowseName="NamespaceUri" ParentNodeId="ns=1;i=5004" NodeId="ns=1;i=6011">
+        <DisplayName>NamespaceUri</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=5004</Reference>
+        </References>
+        <Value>
+            <uax:String>urn:miservidor:ledRojo</uax:String>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" BrowseName="NamespaceVersion" ParentNodeId="ns=1;i=5004" NodeId="ns=1;i=6012">
+        <DisplayName>NamespaceVersion</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=5004</Reference>
+        </References>
+        <Value>
+            <uax:String>1.0.0</uax:String>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="IdType" BrowseName="StaticNodeIdTypes" ParentNodeId="ns=1;i=5004" ValueRank="1" NodeId="ns=1;i=6013" ArrayDimensions="0">
+        <DisplayName>StaticNodeIdTypes</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=5004</Reference>
+        </References>
+        <Value>
+            <uax:ListOfInt32/>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="NumericRange" BrowseName="StaticNumericNodeIdRange" ParentNodeId="ns=1;i=5004" ValueRank="1" NodeId="ns=1;i=6014" ArrayDimensions="0">
+        <DisplayName>StaticNumericNodeIdRange</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=5004</Reference>
+        </References>
+        <Value>
+            <uax:ListOfString/>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="String" BrowseName="StaticStringNodeIdPattern" ParentNodeId="ns=1;i=5004" NodeId="ns=1;i=6015">
+        <DisplayName>StaticStringNodeIdPattern</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+            <Reference IsForward="false" ReferenceType="HasProperty">ns=1;i=5004</Reference>
+        </References>
+        <Value>
+            <uax:String/>
+        </Value>
+    </UAVariable>
+</UANodeSet>

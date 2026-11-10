@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servidor OPC UA · Interfaz</title>
+<link rel="stylesheet" href="/estaticos/estilo.css">
+</head>
+<body>
+<header>
+  <h1>Servidor OPC UA desacoplado</h1>
+  <div id="estado-cabecera" class="estado">…</div>
+  <button id="salir" class="secundario" hidden>Cerrar sesión</button>
+</header>
+
+<div id="login" class="capa" hidden>
+  <form id="form-login" class="tarjeta">
+    <h2>Iniciar sesión</h2>
+    <label>Usuario <input id="login-usuario" autocomplete="username" required></label>
+    <label>Contraseña <input id="login-clave" type="password" autocomplete="current-password" required></label>
+    <p id="login-error" class="error"></p>
+    <button type="submit">Entrar</button>
+  </form>
+</div>
+
+<nav id="pestanas">
+  <button data-panel="conexion" class="activa">1 · Conexión</button>
+  <button data-panel="modelo">2 · Modelo</button>
+  <button data-panel="medida">3 · Medida</button>
+  <button data-panel="servidor">4 · Servidor</button>
+</nav>
+
+<main>
+  <!-- 1. Conexion -->
+  <section id="conexion" class="panel activo">
+    <h2>Controlador</h2>
+    <label>Protocolo <select id="driver-nombre"></select></label>
+    <p id="driver-descripcion" class="nota"></p>
+    <div id="driver-parametros" class="rejilla"></div>
+    <details id="driver-avanzados"><summary>Parámetros avanzados</summary><div class="rejilla"></div></details>
+    <h2>Enlace</h2>
+    <div class="rejilla">
+      <label>Fallos seguidos para dar el enlace por perdido <input id="enlace-fallos_max" type="number" min="1"></label>
+      <label>Espera máxima entre reconexiones (s) <input id="enlace-reintento_max_s" type="number" min="0.1" step="0.1"></label>
+    </div>
+    <h2>Servidor OPC UA</h2>
+    <div class="rejilla">
+      <label>Endpoint <input id="servidor-endpoint"></label>
+      <label>ApplicationUri <input id="servidor-app_uri"></label>
+      <label>Host del certificado (vacío = el del sistema) <input id="servidor-host"></label>
+    </div>
+    <h2>Seguridad</h2>
+    <div class="rejilla">
+      <label>Modo
+        <select id="seguridad-modo">
+          <option value="none">none · sin cifrado (solo red aislada)</option>
+          <option value="firmar">firmar · None + Basic256Sha256, Aes128-Sha256-RsaOaep, Aes256-Sha256-RsaPss</option>
+          <option value="estricto">estricto · solo Basic256Sha256, Aes128-Sha256-RsaOaep, Aes256-Sha256-RsaPss</option>
+        </select></label>
+      <label>Carpeta de certificados <input id="seguridad-cert_dir"></label>
+      <label><input type="checkbox" id="seguridad-lista_confianza"> Lista de confianza de certificados de cliente (firmar y estricto)</label>
+    </div>
+    <h3>Certificados de cliente rechazados</h3>
+    <p class="nota">Solo lectura. Solo los rechazados por «no confiable» se aceptan moviendo su fichero de <span id="rechazados-carpeta">rechazados</span> a <span id="confianza-carpeta">confianza</span> (no hace falta reiniciar); los caducados o con URI no válido necesitan otro certificado en el cliente.</p>
+    <table id="rechazados"><thead><tr><th>Nombre (CN)</th><th>Huella SHA-1</th><th>Fecha</th><th>Motivo</th><th>¿Se acepta moviéndolo?</th></tr></thead><tbody></tbody></table>
+    <button id="rechazados-refrescar" class="secundario">Actualizar lista</button>
+    <h3>Usuarios OPC UA</h3>
+    <p class="nota">Las contraseñas se guardan como hash PBKDF2 (clave_hash), nunca en claro.</p>
+    <table id="usuarios"><thead><tr><th>Usuario</th><th>Contraseña</th><th></th></tr></thead><tbody></tbody></table>
+    <button id="usuario-nuevo" class="secundario">Añadir usuario</button>
+  </section>
+
+  <!-- 2. Modelo -->
+  <section id="modelo" class="panel">
+    <h2>Origen del modelo</h2>
+    <div class="opciones">
+      <label><input type="radio" name="via" value="importar" checked> Importar un NodeSet</label>
+      <label><input type="radio" name="via" value="crear"> Crear desde una descripción de planta</label>
+    </div>
+
+    <div id="via-importar">
+      <div class="fila">
+        <label>NodeSet de la carpeta <select id="importar-ruta"></select></label>
+        <button id="importar">Validar e importar</button>
+      </div>
+      <div class="fila">
+        <label>Subir un NodeSet (.xml) <input id="subir-fichero" type="file" accept=".xml"></label>
+        <label class="casilla"><input id="subir-sobrescribir" type="checkbox"> Sobrescribir</label>
+        <button id="subir" class="secundario">Subir</button>
+      </div>
+    </div>
+
+    <div id="via-crear" hidden>
+      <div class="fila">
+        <label>Plantilla <select id="plantilla"></select></label>
+        <button id="cargar-plantilla" class="secundario">Cargar plantilla</button>
+      </div>
+      <textarea id="editor" spellcheck="false" placeholder="modelo: / tipos: / instancias:"></textarea>
+      <div class="fila">
+        <label>Guardar planta como <input id="nombre-planta" value="planta.yaml"></label>
+        <label>NodeSet generado <input id="nombre-nodeset" value="modelo.xml"></label>
+        <label class="casilla"><input id="regenerar" type="checkbox"> Regenerar al arrancar (origen: planta)</label>
+        <button id="generar" disabled>Generar NodeSet</button>
+      </div>
+    </div>
+
+    <div id="resultado-modelo">
+      <p id="modelo-estado" class="nota">Sin validar.</p>
+      <ul id="modelo-errores" class="errores"></ul>
+      <ul id="modelo-avisos" class="avisos"></ul>
+      <table id="tabla-mapeo" hidden>
+        <thead><tr><th>Variable</th><th>Dirección</th><th>Tipo</th><th>Sentido</th></tr></thead><tbody></tbody>
+      </table>
+      <p id="modelo-metodos" class="nota"></p>
+    </div>
+    <p>Modelo de la configuración: <strong id="modelo-elegido">—</strong></p>
+  </section>
+
+  <!-- 3. Medida -->
+  <section id="medida" class="panel">
+    <h2>Campaña de medidas</h2>
+    <p class="nota">Para medir, use origen: nodeset con un NodeSet congelado.</p>
+    <div class="rejilla">
+      <label>Periodo del ciclo (ms) <input id="medida-periodo_ms" type="number" min="1" step="1"></label>
+      <label>Log de ciclos CSV (vacío = no) <input id="medida-log_csv" placeholder="medidas/ciclos.csv"></label>
+      <label>Log de accesos CSV (vacío = no) <input id="medida-log_accesos" placeholder="medidas/accesos.csv"></label>
+    </div>
+  </section>
+
+  <!-- 4. Servidor -->
+  <section id="servidor" class="panel">
+    <h2>Configuración</h2>
+    <div class="fila">
+      <button id="validar-config" class="secundario">Validar</button>
+      <button id="guardar-config">Guardar config.yaml</button>
+    </div>
+    <ul id="config-errores" class="errores"></ul>
+    <ul id="config-avisos" class="avisos"></ul>
+    <h2>Proceso</h2>
+    <div class="fila">
+      <button id="arrancar">Arrancar</button>
+      <button id="detener" class="peligro">Detener</button>
+      <button id="reiniciar" class="secundario">Reiniciar</button>
+      <span id="estado-proceso" class="estado">…</span>
+    </div>
+    <pre id="log"></pre>
+  </section>
+</main>
+<script src="/estaticos/app.js"></script>
+</body>
+</html>

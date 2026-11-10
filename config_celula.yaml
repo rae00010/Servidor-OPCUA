@@ -1,0 +1,30 @@
+# Configuracion de la celula: snap7, sin seguridad, modelo de referencia.
+# Arranque:  py serverOPCUA_MetodoTFGV5_asyncua.py --config config_celula.yaml
+# Las rutas relativas se toman respecto a la carpeta de este fichero.
+servidor:
+  endpoint: opc.tcp://127.0.0.1:4840
+  app_uri: urn:uja:opcua:servidor-desacoplado
+  host: null                  # null = nombre del sistema
+  perfiles: []                # vacio = ninguno; declarar solo un perfil verificado
+driver:
+  nombre: snap7
+  parametros:
+    ip: 192.168.0.1
+    rack: 0
+    slot: 1
+    timeout_ms: 1000
+enlace:
+  fallos_max: 3
+  reintento_max_s: 10
+modelo:
+  origen: nodeset             # campana de medidas: NodeSet congelado
+  nodeset: modelo_celula.xml
+seguridad:
+  modo: none
+  cert_dir: pki
+  lista_confianza: true       # firmar/estricto: certificados de cliente en pki/confianza
+  usuarios: []
+medida:
+  periodo_ms: 100
+  log_csv: null
+  log_accesos: null

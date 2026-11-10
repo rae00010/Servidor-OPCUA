@@ -1,0 +1,28 @@
+# Ejemplo de dispositivo definido por el usuario, con variables INT y REAL.
+modelo:
+  uri: urn:ujaen:planta:transporte
+  version: 0.1.0
+  driver: snap7
+
+tipos:
+  TVariador:
+    descripcion: Variador de frecuencia del transportador
+    grupos:
+      Control:
+        Marcha:   {tipo: BOOL, acceso: escritura}
+        Consigna: {tipo: INT,  acceso: escritura, descripcion: "rpm"}
+      Estado:
+        EnMarcha:   {tipo: BOOL, acceso: lectura}
+        Velocidad:  {tipo: INT,  acceso: lectura}
+        Frecuencia: {tipo: REAL, acceso: lectura, descripcion: "Hz"}
+
+instancias:
+  Transportador1:
+    tipo: TVariador
+    descripcion: Cinta de entrada
+    direcciones:
+      Control/Marcha:     M10.0
+      Control/Consigna:   DB10.0      # INT: sin bit
+      Estado/EnMarcha:    I1.0
+      Estado/Velocidad:   DB10.2
+      Estado/Frecuencia:  DB10.4      # REAL: 4 bytes, DB10.4 a DB10.7

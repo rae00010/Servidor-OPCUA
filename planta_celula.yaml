@@ -1,0 +1,67 @@
+# Descripcion de planta de la celula actual (LED, pulsador y dos cilindros).
+# Direcciones iguales a las de ledmodel_v5.xml.
+modelo:
+  uri: urn:miservidor:ledRojo
+  version: 1.1.0
+  driver: snap7
+
+tipos:
+  TCilindroDobleEfecto:
+    descripcion: Cilindro de doble efecto con dos finales de carrera
+    grupos:
+      Control:
+        ExpandirSalida: {tipo: BOOL, acceso: lectura}
+        ContraerSalida: {tipo: BOOL, acceso: lectura}
+      Estado:
+        Expandido: {tipo: BOOL, acceso: lectura}
+        Retraido:  {tipo: BOOL, acceso: lectura}
+  TCilindroSimpleEfecto:
+    descripcion: Cilindro de simple efecto con dos finales de carrera
+    grupos:
+      Control:
+        ExpandirSalida: {tipo: BOOL, acceso: lectura}
+      Estado:
+        Expandido: {tipo: BOOL, acceso: lectura}
+        Retraido:  {tipo: BOOL, acceso: lectura}
+  TLed:
+    descripcion: Piloto luminoso
+    variables:
+      Value: {tipo: BOOL, acceso: escritura}
+  TPulsador:
+    descripcion: Pulsador con mando remoto
+    grupos:
+      Control:
+        PulsadoRemoto: {tipo: BOOL, acceso: escritura}
+      Estado:
+        Pulsado: {tipo: BOOL, acceso: lectura}
+    metodos:
+      ControlarPulsador:
+        descripcion: Pulsa o suelta el pulsador desde OPC UA
+        entradas:
+          - {nombre: accion, tipo: STRING, descripcion: "pulsar | soltar"}
+        salidas:
+          - {nombre: resultado, tipo: STRING}
+
+instancias:
+  CilindroA:
+    tipo: TCilindroDobleEfecto
+    direcciones:
+      Control/ExpandirSalida: Q0.0
+      Control/ContraerSalida: Q0.1
+      Estado/Expandido: I0.5
+      Estado/Retraido:  I0.4
+  CilindroB:
+    tipo: TCilindroSimpleEfecto
+    direcciones:
+      Control/ExpandirSalida: Q0.2
+      Estado/Expandido: I0.7
+      Estado/Retraido:  I0.6
+  LedRojo:
+    tipo: TLed
+    direcciones:
+      Value: Q0.3            # escritura en Q: el generador avisara
+  PulsadorVerde:
+    tipo: TPulsador
+    direcciones:
+      Control/PulsadoRemoto: M0.0
+      Estado/Pulsado: I0.0

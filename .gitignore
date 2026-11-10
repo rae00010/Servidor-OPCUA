@@ -1,0 +1,27 @@
+# NodeSet y descripciones de planta que generan las pruebas
+# (modelo_celula.xml sí se versiona: es el modelo de referencia)
+modelo_*_faseA.xml
+modelo_faseB_*.xml
+planta_faseB_*.yaml
+
+# Carpeta de trabajo de las pruebas de la Fase C y ficheros de ejecucion
+prueba_faseC/
+servidor.pid
+servidor.parar
+modelo_variador.xml
+medidas/
+
+# Logs del servidor y de las pruebas
+*.log
+logs/
+
+# Certificados y claves (servidor y cliente)
+pki/
+cli/
+
+# Copias comprimidas
+*.zip
+
+# Python
+__pycache__/
+prueba_interop/

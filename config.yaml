@@ -1,0 +1,29 @@
+# Configuracion del servidor OPC UA (generada; ver GUIA_DESPLIEGUE.md)
+servidor:
+  endpoint: opc.tcp://127.0.0.1:4840
+  app_uri: urn:uja:opcua:servidor-desacoplado
+  host: null
+  perfiles: []
+driver:
+  nombre: snap7
+  parametros:
+    ip: 192.168.0.1
+    rack: 0
+    slot: 1
+    timeout_ms: 1000
+    max_hueco: 8
+enlace:
+  fallos_max: 3
+  reintento_max_s: 10
+modelo:
+  origen: nodeset
+  nodeset: modelo_celula.xml
+  planta: null
+seguridad:
+  modo: none
+  cert_dir: pki
+  usuarios: []
+medida:
+  periodo_ms: 100
+  log_csv: null
+  log_accesos: null

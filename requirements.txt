@@ -1,0 +1,20 @@
+# Dependencias del servidor OPC UA externo (V5)
+# Probado con Python 3.12 y 3.14.
+
+asyncua==2.0.1          # fijada: la lista de confianza usa su validador de certificados
+python-snap7==2.0.2
+PyYAML==6.0.3          # descripcion de planta (Fase B)
+
+# Interfaz web local (Fase C). Todas con ruedas binarias para Python 3.14.
+fastapi==0.162.2
+starlette==1.10.0
+pydantic==2.14.3
+pydantic-core==2.50.4
+uvicorn==0.54.0
+python-multipart==0.0.33   # subida de ficheros NodeSet
+
+# Notas:
+# - python-snap7 necesita la biblioteca nativa Snap7 (snap7.dll en Windows).
+#   Si el servidor V4 ya funcionaba en esta maquina, la DLL ya esta disponible.
+# - Para registrar metricas de ciclo en InfluxDB (opcional), anadir:
+#   influxdb-client
