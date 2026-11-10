@@ -1,0 +1,23 @@
+# Ejemplo: seguridad estricta y modelo generado al arrancar desde un YAML de planta.
+# El usuario 'rafa' tiene la contrasena de ejemplo 'clave123' (cambiela:
+#   py servidor/configuracion.py --hash-clave).
+servidor:
+  endpoint: opc.tcp://0.0.0.0:4840
+driver:
+  nombre: snap7
+  parametros: {ip: 192.168.0.1, rack: 0, slot: 1, timeout_ms: 500}
+modelo:
+  origen: planta
+  planta: ../modelos/planta_ejemplo_variador.yaml   # se valida y comprueba al arrancar
+  nodeset: ../modelos/modelo_variador.xml            # destino del NodeSet generado
+seguridad:
+  modo: estricto
+  cert_dir: ../pki
+  lista_confianza: true                  # certificados de cliente en pki/confianza
+  usuarios:
+    - nombre: rafa
+      clave_hash: "pbkdf2_sha256$600000$eZ/BQrcAPTIjjlHkbB9r7g==$+BIGgALXxI6b1hn1LN5C7CXgW/6Vooej1OHontl39V8="
+medida:
+  periodo_ms: 50
+  log_csv: ../medidas/ciclos.csv
+  log_accesos: ../medidas/accesos.csv

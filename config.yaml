@@ -17,7 +17,7 @@ enlace:
   reintento_max_s: 10
 modelo:
   origen: nodeset
-  nodeset: modelo_celula.xml
+  nodeset: modelos/modelo_celula.xml
   planta: null
 seguridad:
   modo: none

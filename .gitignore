@@ -1,11 +1,8 @@
-# NodeSet y descripciones de planta que generan las pruebas
-# (modelo_celula.xml sí se versiona: es el modelo de referencia)
-modelo_*_faseA.xml
-modelo_faseB_*.xml
-planta_faseB_*.yaml
+# Ficheros temporales de las pruebas (modelos generados, carpetas de prueba,
+# pki y certificados de prueba, logs): carpeta de trabajo de pruebas/_rutas.py
+tmp/
 
-# Carpeta de trabajo de las pruebas de la Fase C y ficheros de ejecucion
-prueba_faseC/
+# Ficheros de ejecucion del servidor y de la interfaz (carpeta de trabajo: la raiz)
 servidor.pid
 servidor.parar
 modelo_variador.xml
@@ -17,11 +14,10 @@ logs/
 
 # Certificados y claves (servidor y cliente)
 pki/
-cli/
+pki_cliente/
 
 # Copias comprimidas
 *.zip
 
 # Python
 __pycache__/
-prueba_interop/
