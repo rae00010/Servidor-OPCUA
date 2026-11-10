@@ -251,3 +251,7 @@ anteriores no se modifican.
 - Rutas: nuevo `pruebas/_rutas.py` (añade `servidor/` y `herramientas/` a la ruta y fija `tmp/` como carpeta de trabajo de las pruebas, ignorada por git); pruebas, `proceso.py` (nombre del servidor), plantillas de `interfaz.py`, ejemplos de `config/` (`../modelos`, `../pki`), `config.yaml` de la raíz y textos de uso actualizados. `test_faseC_config` importa el servidor como `servidor_opcua`.
 - Docs: `GUIA_DESPLIEGUE.md`, `INTEROPERABILIDAD.md`, `CLAUDE.md` y `.gitignore` con la nueva estructura y comandos (todos desde la raíz). `GUIA_PRUEBA_LABORATORIO.md` no estaba en el proyecto: la copiará el usuario en `docs/`.
 - Pruebas: batería completa en verde (24/24, mismos recuentos que antes). Cierre: el servidor arranca desde la raíz con `--config config/config_celula.yaml` y desde `py servidor/interfaz.py` (arrancar, leer y detener ordenado, código 0) contra el PLC emulado.
+
+### 2026-11-10 · Guía de la prueba de laboratorio en docs/
+- Qué: el usuario copió `GUIA_PRUEBA_LABORATORIO.md` en `docs/`; actualizados sus comandos y rutas a la nueva estructura (`py servidor/interfaz.py`, `py servidor/servidor_opcua.py --config config.yaml`, `modelos/modelo_celula.xml`, `logs/servidor.log`), con el comando completo de la comprobación de seguridad estricta. Se sustituye la nota sobre la reorganización pendiente por la indicación de lanzar todo desde la raíz.
+- Pruebas: solo documentación; código sin cambios.
